@@ -11,21 +11,82 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+
 </head>
 
 <body>
     <!-- As a link -->
-<nav class="navbar navbar-light bg-primary">
+    <nav class="navbar navbar-light bg-primary">
         <a class="navbar-brand" href="#" style="font-size: 30px; color: whitesmoke; font-weight: 400;">ShareEasy
-            <p style="font-size: 15px; color: whitesmoke; font-weight: 100;">      webRTC solution for sharing data between browsers
-                <br />
-                IoT lab, IASBS, 2018
-            </p>
+        
         </a>
-  
-      </nav>
-      
+    </nav>
 
+
+    <div class="jumbotron">
+        <h1 class="display-4">ShareEasy</h1>
+        <p style=" font-size: 15px; font-weight: 100;"> webRTC solution for sharing data between browsers
+                <hr> IoT lab, IASBS, 2018
+            </p>
+    </div>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="card">
+                    <img class="card-img-top" src="./assets/image/image.svg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text">Generate File</p>
+                        <div class="input-group mb-3">
+                                <input id="megsToSend"type="number" class="form-control" placeholder="FileSize"  aria-describedby="basic-addon2">
+                                <div class="input-group-append">    <span class="input-group-text">MB</span>
+                                    <button  id="sendTheData" class="btn btn-outline-secondary" type="button">Generate and Send</button>
+                                </div>
+                                <hr>
+                           
+               
+                            </div>
+                            <hr />
+                            <span id="errorMsg">Status: Sucess</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="card">
+                    <img class="card-img-top" src="./assets/image/image.svg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text">Sender Data</p>
+                        <b>Packet p/s: </b> 12 
+                        <hr>
+                        <b>Total Sent: </b> 12 
+                        <hr>
+
+                        <div class="progress">
+                            <div class="progress-bar" id="sendProgress" role="progressbar" style="width: 01%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="card">
+                    <img class="card-img-top" src="./assets/image/image.svg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text">Receiver Data</p>
+                        <b>Packet p/s: </b> 12 
+                        <hr>
+                        <b>Total Recevied: </b> 1200
+                        <hr>
+
+                        <div class="progress">
+                            <div class="progress-bar" id="receiveProgress" role="progressbar" style="width: 2%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./assets/js/main.js"></script>
 </body>
+
 
 </html>
