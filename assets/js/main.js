@@ -14,6 +14,8 @@ var orderedCheckbox = document.querySelector('input#ordered');
 var sendProgress = document.querySelector('#sendProgress');
 var receiveProgress = document.querySelector('#receiveProgress');
 var errorMessage = document.querySelector('#errorMsg');
+var totalSent = document.querySelector('#totalSent');
+var totalReceive = document.querySelector('#totalReceive');
 
 var receivedSize = 0;
 var bytesToSend = 0;
@@ -26,13 +28,12 @@ megsToSend.addEventListener('change', function (e) {
         sendButton.disabled = true;
         errorMessage.innerHTML = '<p>Please enter a number greater than zero.</p>';
     } else {
-        errorMessage.innerHTML = 'Generating...';
         sendButton.disabled = false;
     }
 });
 
 function createConnection() {
-  
+    errorMessage.innerHTML = 'Generating...';
     console.log("here");
     sendButton.disabled = true;
     megsToSend.disabled = true;
@@ -146,7 +147,7 @@ function updateProgressbarSend(sent) {
     
     var persentage = (sent / maximumBytes) * 100;
     persentage = Math.floor(persentage);
-   
+    totalSent.innerText = sent + " bytes";
     sendProgress.style.width = persentage + '%';
 
 }
@@ -154,11 +155,14 @@ function updateProgressbarSend(sent) {
 function updateProgressbarReceive(receive) {
     var persentage = (receive / maximumBytes) * 100;
     persentage = Math.floor(persentage);
+    totalReceive.innerText = receive + " bytes";
     receiveProgress.style.width = persentage + '%';
 }
 //_______________________________________
 
+
 function closeDataChannels() {
+        errorMessage.innerHTML = "Status: Done"
     trace('Closing data channels');
     sendChannel.close();
     trace('Closed data channel with label: ' + sendChannel.label);
