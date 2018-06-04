@@ -262,3 +262,53 @@ function trace(text) {
         console.log(text);
     }
 }
+
+
+
+bitrateSeries = new TimelineDataSeries();
+bitrateGraph = new TimelineGraphView('bitrateGraph', 'bitrateCanvas');
+bitrateGraph.updateEndDate();
+
+packetSeries = new TimelineDataSeries();
+packetGraph = new TimelineGraphView('packetGraph', 'packetCanvas');
+packetGraph.updateEndDate();
+
+
+
+window.setInterval(function() {
+    debugger;
+    if (!window.pc1) {
+      return;
+    }
+    var sender = pc1.getSenders()[0];
+    sender.getStats().then(function(res) {
+      res.forEach(function(report) {
+        var bytes;
+        var packets;
+        var now = report.timestamp;
+        if (report.type === 'outbound-rtp') {
+          bytes = report.bytesSent;
+          packets = report.packetsSent;
+          if (lastResult && lastResult.get(report.id)) {
+            // calculate bitrate
+            var bitrate = 8 * (bytes - lastResult.get(report.id).bytesSent) /
+                (now - lastResult.get(report.id).timestamp);
+  
+            // append to chart
+            bitrateSeries.addPoint(now, bitrate);
+            bitrateGraph.setDataSeries([bitrateSeries]);
+            bitrateGraph.updateEndDate();
+  
+            // calculate number of packets and append to chart
+            packetSeries.addPoint(now, packets -
+                lastResult.get(report.id).packetsSent);
+            packetGraph.setDataSeries([packetSeries]);
+            packetGraph.updateEndDate();
+          }
+        }
+      });
+      lastResult = res;
+    });
+  }, 1000);
+
+

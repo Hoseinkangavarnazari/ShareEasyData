@@ -11,14 +11,14 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-
+    <script src="./assets/js/graph.js"></script>
 </head>
 
 <body>
     <!-- As a link -->
     <nav class="navbar navbar-light bg-primary">
         <a class="navbar-brand" href="#" style="font-size: 30px; color: whitesmoke; font-weight: 400;">ShareEasy
-        
+
         </a>
     </nav>
 
@@ -26,39 +26,48 @@
     <div class="jumbotron">
         <h1 class="display-4">ShareEasy</h1>
         <p style=" font-size: 15px; font-weight: 100;"> webRTC solution for sharing data between browsers
-                <hr> IoT lab, IASBS, 2018
-            </p>
+            <hr> IoT lab, IASBS, 2018
+        </p>
     </div>
     <br />
     <div class="container">
         <div class="row">
             <div class="col-sm">
                 <div class="card">
-                    <img class="card-img-top" src="./assets/image/image.svg" alt="Card image cap">
+
                     <div class="card-body">
                         <p class="card-text">Generate File</p>
                         <div class="input-group mb-3">
-                                <input id="megsToSend"type="number" class="form-control" placeholder="FileSize"  aria-describedby="basic-addon2">
-                                <div class="input-group-append">    <span class="input-group-text">MB</span>
-                                    <button  id="sendTheData" class="btn btn-outline-secondary" type="button">Generate and Send</button>
-                                </div>
-                                <hr>
-                           
-               
+                            <input id="megsToSend" type="number" class="form-control" placeholder="FileSize" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <span class="input-group-text">MB</span>
+                                <button id="sendTheData" class="btn btn-outline-secondary" type="button">Generate and Send</button>
                             </div>
-                            <hr />
-                            <span id="errorMsg">Status: Not started yet</span>
+                            <hr>
+
+
+                        </div>
+                        <hr />
+                        <span id="errorMsg">Status: Not started yet</span>
                     </div>
                 </div>
             </div>
             <div class="col-sm">
                 <div class="card">
-                    <img class="card-img-top" src="./assets/image/image.svg" alt="Card image cap">
+
                     <div class="card-body">
+                        <div class="graph-container" id="bitrateGraph">
+                            <div>Bitrate</div>
+                            <canvas id="bitrateCanvas"></canvas>
+                            <br />
+                            <br />
+                        </div>
                         <p class="card-text">Sender Data</p>
-                        <b>Packet p/s: </b> 12 
+                        <b>Packet p/s: </b>
+                        <span> No data </span>
                         <hr>
-                        <b>Total Sent: </b> <span id="totalSent">0</span> 
+                        <b>Total Sent: </b>
+                        <span id="totalSent">0</span>
                         <hr>
 
                         <div class="progress">
@@ -69,22 +78,34 @@
             </div>
             <div class="col-sm">
                 <div class="card">
-                    <img class="card-img-top" src="./assets/image/image.svg" alt="Card image cap">
+
                     <div class="card-body">
+                        <div class="graph-container" id="packetGraph">
+                            <div>Packets sent per second</div>
+                            <canvas id="packetCanvas"></canvas>
+                        </div>
+                        <br />
+                        <br />
                         <p class="card-text">Receiver Data</p>
-                        <b>Packet p/s: </b> 12 
+                        <b>Packet p/s: </b>
+                        <span> No data </span>
                         <hr>
-                        <b>Total Recevied: </b> <span id="totalReceive"> 0</span>
+                        <b>Total Recevied: </b>
+                        <span id="totalReceive"> 0</span>
                         <hr>
 
                         <div class="progress">
-                            <div class="progress-bar" id="receiveProgress" role="progressbar" style="width: 2%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar" id="receiveProgress" role="progressbar" style="width: 2%" aria-valuenow="25" aria-valuemin="0"
+                                aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
     <script src="./assets/js/main.js"></script>
 </body>
 
